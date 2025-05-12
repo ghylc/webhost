@@ -2,16 +2,11 @@ from playwright.sync_api import sync_playwright
 import os
 import requests
 
-from apscheduler.schedulers.blocking import BlockingScheduler
-
 def refresh_url():
     url = 'https://web.css63.ggff.net/sub'
     response = requests.get(url)
-    print(response.text)  # 打印URL的响应内容
-
-scheduler = BlockingScheduler()
-scheduler.add_job(refresh_url, 'interval', minutes=1)
-scheduler.start()
+    print(response.text)
+refresh_url()
 
 def send_telegram_message(message):
     bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
